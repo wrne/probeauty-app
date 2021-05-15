@@ -1,7 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import testeAuth from '../../pages/testeAuth';
+
 import loginPage from '../../pages/login.page';
+import newUserPage from '../../pages/newUser.page';
 
 // import {theme} from '../theme'
 // const {colors} = theme;
@@ -12,13 +13,13 @@ export default function AuthRoutes() {
 	return (
 		<AuthStack.Navigator screenOptions={styleDefault} initialRouteName="login">
 			<AuthStack.Screen name='login' component={loginPage} options={{ headerShown: false }} />
-			<AuthStack.Screen name='create' component={testeAuth} options={{ headerShown: true }} />
+			<AuthStack.Screen name='create' component={newUserPage} options={{ headerShown: true, title: 'Novo Usuário'}} />
 		</AuthStack.Navigator>
 	);
 };
 
 const styleDefault = {
-	headerStyle: { backgroundColor: 'white' },
+	headerStyle: { backgroundColor: '#A4C9FF' },
 	headerTintColor: '#FFF',
 	headerTitleStyle: {
 		// fontWeight: ''
