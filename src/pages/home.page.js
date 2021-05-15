@@ -15,14 +15,14 @@ function Card({title,value, unity}){
 export default function HomePage() {
 
 	const userName = 'Fulana'
-	// Usar o UseEffect para carregar os dados do usu·rio
+	// Usar o UseEffect para carregar os dados do usu√°rio
 	// 
 
 	return (
 		<SafeAreaView>
 			
 			<View>
-				<Text>Ol· {userName}!</Text>
+				<Text>Ol√° {userName}!</Text>
 			</View>
 
 			<View>

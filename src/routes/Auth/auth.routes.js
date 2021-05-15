@@ -1,8 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import loginPage from '../../pages/login.page';
-import newUserPage from '../../pages/newUser.page';
+import loginPage from '../../pages/auth/login.page';
+import newUserPage from '../../pages/auth/newUser.page';
 
 // import {theme} from '../theme'
 // const {colors} = theme;

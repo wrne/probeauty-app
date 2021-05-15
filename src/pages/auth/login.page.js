@@ -4,11 +4,11 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { useAuth } from '../contexts/user.context';
-import logo from '../../assets/beleza.png'
-;
+import { useAuth } from '../../contexts/user.context';
+import logo from '../../../assets/beleza.png';
+
 // import { useMessages } from '../contexts/message.context';
-import {colors, metrics}  from '../styles';
+import {colors, metrics}  from '../../styles';
 
 export default function loginPage({ navigation }) {
 

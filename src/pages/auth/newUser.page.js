@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StatusBar, KeyboardAvoidingView, TouchableOpacity, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native'
 
-import { useAuth } from '../contexts/user.context'
+import { useAuth } from '../../contexts/user.context'
 
 export default function NewUser({ navigation }) {
 
@@ -22,7 +22,7 @@ export default function NewUser({ navigation }) {
 
 		} else {
 
-			Alert.alert('Senhas digitadas não conferem. Favor verificar.');
+			Alert.alert('Senhas digitadas nï¿½o conferem. Favor verificar.');
 
 			setPassword('');
 			setConfirmPassword('');
