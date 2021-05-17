@@ -1,7 +1,7 @@
 const colors = {
-	mainA: 'black',
-	mainB: 'gray',
-	mainC: 'red'
+	background: '#CBBCE4',
+	boxBackground: '#FFFFFF',
+
 };
 
 export default colors;

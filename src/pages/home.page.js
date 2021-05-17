@@ -1,48 +1,79 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { SafeAreaView, StatusBar, StyleSheet, Text, View,TouchableOpacity } from 'react-native'
+import { color } from 'react-native-reanimated';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { colors, metrics } from '../styles'
 
-function Card({title,value, unity}){
-	return(
-		<View>
-			<Text>{title}</Text>
-			<Text>{value}</Text>
-			<Text>{unity}</Text>
-		</View>
-	)
-}
-
-export default function HomePage() {
-
+export default function HomePage(){
 	const userName = 'Fulana'
-	// Usar o UseEffect para carregar os dados do usuário
-	// 
-
 	return (
-		<SafeAreaView>
-			
-			<View>
-				<Text>Olá {userName}!</Text>
-			</View>
 
-			<View>
-				<Card title="Clientes" value="50" unity=""/>
-				<Card title="A Receber" value="522,00" unity="BRL"/>
-				<Card title="A Pagar" value="130,00" unity="BRL"/>
-				<Card title="Atendimentos" value="110" unity=""/>
-			</View>
+		<SafeAreaView style={styles.background}>
+			<StatusBar
+				barStyle="dark-content"
+				backgroundColor={colors.background}
+			/>
+			<View style={styles.container}>
 
-			<View>
-				<TouchableOpacity>
-					<Text>Novo Atendimento</Text>
-				</TouchableOpacity>
-				<TouchableOpacity>
-					<Text>Nova Cliente</Text>
-				</TouchableOpacity>
-			</View>
 
+				<View style={styles.containerHeader}>
+					<Text style={styles.textHello}>Olá</Text>
+					<Text style={styles.textName}>{userName}!</Text>
+				</View>
+
+				<Text>O que deseja fazer?</Text>
+				<View style={styles.containerButtons}>
+					<TouchableOpacity style={[styles.button,{width: 120,height: 120}]}>
+						<Icon name="brush" size={48} color="#FFFFFF"></Icon>
+						<Text style={styles.textButton}>Novo Atendimento</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={[styles.button,{width: 100,height: 100}]}>
+						<Icon name="person" size={48} color="#FFFFFF"></Icon>
+						<Text style={styles.textButton}>Nova Cliente</Text>
+					</TouchableOpacity>
+				</View>
+
+			</View>
 		</SafeAreaView>
 	)
 }
 
-const styles = StyleSheet.create({})
+
+const styles = StyleSheet.create({
+	background: {
+		height: '100%',
+		backgroundColor: colors.background
+	},
+	container: {
+		margin: 7,
+		padding: 10,
+		height: '96%', // Corrigir condiderando 100% menos altura da TabBar
+		borderRadius: metrics.borderRadius,
+		justifyContent: 'space-around',
+		// backgroundColor: colors.boxBackground,
+	},
+	textHello:{
+		fontSize: 22,
+	},
+	textName:{
+		fontSize: 32,
+		fontWeight: 'bold'
+	},
+	containerButtons:{
+		alignItems: 'center',
+		justifyContent: 'space-around',
+		marginBottom: 30,
+	},
+	button:{
+		backgroundColor: 'gray',
+		marginTop: 30,
+		borderRadius: 80,
+		alignItems: 'center',
+		justifyContent: 'center'
+
+	},
+	textButton:{
+		fontSize: 12,
+		color: '#FFFFFF'
+	}
+})

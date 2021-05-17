@@ -30,9 +30,6 @@ export default function AppRoutes() {
 						case 'customers':
 							iconName = 'people';
 							break;
-						case 'newProcedure':
-							iconName = 'brush';
-							break;
 						case 'home':
 							iconName = 'home';
 							break;
@@ -40,8 +37,9 @@ export default function AppRoutes() {
 							iconName = 'settings';
 							break;
 						default:
-							iconName = 'circle';
+							iconName = 'brush';
 							break;
+							
 					}
 
 					return <Icon name={iconName} size={size} color={color} />;
@@ -58,11 +56,11 @@ export default function AppRoutes() {
 				}
 			}}
 		>
-			<AppTabBotton.Screen name="home" component={HomePage} />
-			<AppTabBotton.Screen name="customers" component={CustomersPage} />			
+			<AppTabBotton.Screen name="home" component={HomePage} options={{tabBarLabel:'Home'}}/>
+			<AppTabBotton.Screen name="customers" component={CustomersPage} options={{tabBarLabel:'Clientes'}}/>			
 			<AppTabBotton.Screen name="newProcedure" component={ProceduresPage} />
-			<AppTabBotton.Screen name="finances" component={FinancesPage} />
-			<AppTabBotton.Screen name="config" component={ConfigurationPage} />
+			<AppTabBotton.Screen name="finances" component={FinancesPage} options={{tabBarLabel:'Finanças'}}/>
+			<AppTabBotton.Screen name="config" component={ConfigurationPage} options={{tabBarLabel:'Configurações'}}/>
 		</AppTabBotton.Navigator>
 		// </NotesProvider>
 	);
