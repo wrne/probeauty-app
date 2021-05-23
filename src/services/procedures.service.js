@@ -5,9 +5,10 @@ export const ProcedureService = {
 
 		let myProcedures = [];
 
+		console.log('subscriberProcedures user:',user);
 		const subscriber = firestore()
 			.collection('Procedures')
-			.where('user', '==', user.id)
+			.where('user.id', '==', user.id)
 			.onSnapshot(querySnapshot => {
 
 				myProcedures = [];
@@ -20,7 +21,7 @@ export const ProcedureService = {
 						id: docSnapShot.id,
 						user: doc.user,
 						description: doc.description,
-						value: doc.value
+						cost: doc.cost
 					};
 
 					myProcedures.push(procedure);
@@ -45,6 +46,7 @@ export const ProcedureService = {
 	},
 
 	async updateProcedure(procedure){
+		console.log('update Procedure',procedure);
 		
 		firestore()
 			.collection('Procedures')
@@ -59,7 +61,7 @@ export const ProcedureService = {
 
 		firestore()
 		.collection('Procedures')
-		.doc(idNote)
+		.doc(idProcedure)
 		.delete()
 		.then(() => {
 			console.log('Note deleted!');
