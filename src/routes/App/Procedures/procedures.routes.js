@@ -16,8 +16,9 @@ export default function ProceduresRoutes() {
 		{/* options={getScreenRightButtonOption()} /> */}
 	return (
 		<ProceduresRoutesStack.Navigator >
-			<ProceduresRoutesStack.Screen name="all.procedures" component={ProceduresPage} />
-			<ProceduresRoutesStack.Screen name="detail.procedure" component={ProceduresDetailPage} />
+			<ProceduresRoutesStack.Screen name="all.procedures" component={ProceduresPage} options={{title: 'Procedimentos'}}/>
+			<ProceduresRoutesStack.Screen name="new.procedure" component={ProceduresDetailPage} options={{title: 'Novo Procedimento'}}/>
+			<ProceduresRoutesStack.Screen name="detail.procedure" component={ProceduresDetailPage} options={{title: 'Detalhes de Procedimento'}}/>
 		</ProceduresRoutesStack.Navigator>
 	);
 };

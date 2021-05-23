@@ -18,8 +18,8 @@ export default function configRoutes() {
 		{/* options={getScreenRightButtonOption()} /> */}
 	return (
 		<ConfigRoutesStack.Navigator >
-			<ConfigRoutesStack.Screen name="configPage" component={ConfigPage} />
-			<ConfigRoutesStack.Screen name="procedures" component={ProceduresRoutes} />
+			<ConfigRoutesStack.Screen name="configPage" component={ConfigPage} options={{title: 'Configurações'}}/>
+			<ConfigRoutesStack.Screen name="procedures" component={ProceduresRoutes}options={{ headerShown: false }} />
 		</ConfigRoutesStack.Navigator>
 	);
 };
