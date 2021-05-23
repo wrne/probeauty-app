@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-export default function ListItens({content, actionLongPressItem, actionPressItem, actionMenuItem}) {
+export default function ListItens({content, actionLongPressItem, actionPressItem, actionMenuItem, icon="more-vert"}) {
 	
 	function renderItem({ item}) {
 
@@ -20,7 +20,7 @@ export default function ListItens({content, actionLongPressItem, actionPressItem
 				<TouchableOpacity
 					style={styles.itemMenu}
 					onPress={()=>{actionMenuItem(item)}}>
-					<Icon name="more-vert" size={24} color="#000000"/>
+					<Icon name={icon} size={24} color="#000000"/>
 				</TouchableOpacity>
 			</View>
 		)
