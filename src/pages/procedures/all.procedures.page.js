@@ -45,10 +45,9 @@ export default function Procedures({ navigation }) {
 
 		function newProcedureAction() {
 
-			navigation.navigate('procedureDetail', {
-				note: inicialNote,
+			navigation.navigate('detail.procedure', {
 				operation: 'insert',
-				insertAction: addNewNote
+				insertAction: ()=>{Alert.alert('Insert Action')}
 			})
 		};
 

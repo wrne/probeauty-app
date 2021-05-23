@@ -6,11 +6,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {ProcedureProvider} from '../../contexts/procedures.context';
 
 // Pages
-import ConfigurationPage from '../../pages/configurations/all.configurations.page'
+// import ConfigurationPage from '../../pages/configurations/all.configurations.page'
 import CustomersPage from '../../pages/customers/all.customers.page'
 import FinancesPage from '../../pages/finances/all.finances.page'
 import ProceduresPage from '../../pages/procedures/all.procedures.page'
 import HomePage from '../../pages/home.page'
+
+// Routes
+import ConfigurationRoutes from './Configurations/config.routes'
 
 import { colors } from '../../styles'
 
@@ -66,7 +69,7 @@ export default function AppRoutes() {
 				<AppTabBotton.Screen name="customers" component={CustomersPage} options={{ tabBarLabel: 'Clientes' }} />
 				<AppTabBotton.Screen name="newProcedure" component={ProceduresPage} />
 				<AppTabBotton.Screen name="finances" component={FinancesPage} options={{ tabBarLabel: 'Finanças' }} />
-				<AppTabBotton.Screen name="config" component={ConfigurationPage} options={{ tabBarLabel: 'Configurações' }} />
+				<AppTabBotton.Screen name="config" component={ConfigurationRoutes} options={{ tabBarLabel: 'Configurações' }} />
 			</AppTabBotton.Navigator>
 		</ProcedureProvider>
 
