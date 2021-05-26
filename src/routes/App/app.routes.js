@@ -3,7 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // Contexts Providers
-import {ProcedureProvider} from '../../contexts/procedures.context';
+import { ProcedureProvider } from '../../contexts/procedures.context';
+import { SalonProvider } from '../../contexts/salons.context';
 
 // Pages
 // import ConfigurationPage from '../../pages/configurations/all.configurations.page'
@@ -26,51 +27,55 @@ export default function AppRoutes() {
 	return (
 
 		<ProcedureProvider>
+			<SalonProvider>
 
-			<AppTabBotton.Navigator
-				screenOptions={({ route }) => ({
-					tabBarIcon: ({ color, size }) => {
-						let iconName;
 
-						switch (route.name) {
-							case 'finances':
-								iconName = 'payments';
-								break;
-							case 'customers':
-								iconName = 'people';
-								break;
-							case 'home':
-								iconName = 'home';
-								break;
-							case 'config':
-								iconName = 'settings';
-								break;
-							default:
-								iconName = 'brush';
-								break;
+				<AppTabBotton.Navigator
+					screenOptions={({ route }) => ({
+						tabBarIcon: ({ color, size }) => {
+							let iconName;
 
+							switch (route.name) {
+								case 'finances':
+									iconName = 'payments';
+									break;
+								case 'customers':
+									iconName = 'people';
+									break;
+								case 'home':
+									iconName = 'home';
+									break;
+								case 'config':
+									iconName = 'settings';
+									break;
+								default:
+									iconName = 'brush';
+									break;
+
+							}
+
+							return <Icon name={iconName} size={size} color={color} />;
+						},
+					})}
+					tabBarOptions={{
+						activeTintColor: colors.mainB,
+						inactiveTintColor: '#777',
+						activeBackgroundColor: colors.dark,
+						inactiveBackgroundColor: colors.dark,
+						showLabel: true,
+						style: {
+							height: 60
 						}
+					}}
+				>
+					<AppTabBotton.Screen name="home" component={HomePage} options={{ tabBarLabel: 'Home' }} />
+					<AppTabBotton.Screen name="customers" component={CustomersPage} options={{ tabBarLabel: 'Clientes' }} />
+					<AppTabBotton.Screen name="newProcedure" component={ProceduresPage} />
+					<AppTabBotton.Screen name="finances" component={FinancesPage} options={{ tabBarLabel: 'Finanças' }} />
+					<AppTabBotton.Screen name="config" component={ConfigurationRoutes} options={{ tabBarLabel: 'Configurações' }} />
+				</AppTabBotton.Navigator>
 
-						return <Icon name={iconName} size={size} color={color} />;
-					},
-				})}
-				tabBarOptions={{
-					activeTintColor: colors.mainB,
-					inactiveTintColor: '#777',
-					activeBackgroundColor: colors.dark,
-					inactiveBackgroundColor: colors.dark,
-					showLabel: true,
-					style: {
-						height: 60
-					}
-				}}
-			>
-				<AppTabBotton.Screen name="home" component={HomePage} options={{ tabBarLabel: 'Home' }} />
-				<AppTabBotton.Screen name="customers" component={CustomersPage} options={{ tabBarLabel: 'Clientes' }} />
-				<AppTabBotton.Screen name="newProcedure" component={ProceduresPage} />
-				<AppTabBotton.Screen name="finances" component={FinancesPage} options={{ tabBarLabel: 'Finanças' }} />
-				<AppTabBotton.Screen name="config" component={ConfigurationRoutes} options={{ tabBarLabel: 'Configurações' }} />
-			</AppTabBotton.Navigator>
+			</SalonProvider>
 		</ProcedureProvider>
 
 	);
