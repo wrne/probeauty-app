@@ -20,6 +20,15 @@ export default function Configurations({navigation}){
 
 		navigation.navigate('salons');
 	}
+
+	function goCustomerServices(){
+		
+		// navigation.navigate('config', {
+		// 	screen: 'procedures'
+		//   });
+
+		navigation.navigate('customerServices');
+	}
 	return (
 		<SafeAreaView>
 			<Text>Configurations page</Text>
@@ -28,6 +37,9 @@ export default function Configurations({navigation}){
 			</TouchableOpacity>
 			<TouchableOpacity onPress={goSalons}>
 				<Text>Go to Salons Page</Text>
+			</TouchableOpacity>
+			<TouchableOpacity onPress={goCustomerServices}>
+				<Text>Go to Customer Services Page</Text>
 			</TouchableOpacity>
 		</SafeAreaView>
 	)
