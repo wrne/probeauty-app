@@ -1,11 +1,23 @@
 import React from 'react'
-import { SafeAreaView, StatusBar, StyleSheet, Text, View,TouchableOpacity } from 'react-native'
-import { color } from 'react-native-reanimated';
+import { ScrollView, SafeAreaView, StatusBar, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import logo from '../../assets/005-beleza.png'
 import { colors, metrics } from '../styles'
+import { useAuth } from '../contexts/user.context'
 
-export default function HomePage(){
-	const userName = 'Fulana'
+function Card({ children, icon, size, color, text }) {
+	return (
+		<View style={styles.cardContainer}>
+			<TouchableOpacity style={styles.button}>
+				<Icon name={icon} size={size} color={color}></Icon>
+				<Text style={styles.textButton}>{text}</Text>
+			</TouchableOpacity>
+		</View>
+	)
+}
+export default function HomePage() {
+	const { user } = useAuth()
+
 	return (
 
 		<SafeAreaView style={styles.background}>
@@ -18,23 +30,28 @@ export default function HomePage(){
 
 				<View style={styles.containerHeader}>
 					<Text style={styles.textHello}>Olá</Text>
-					<Text style={styles.textName}>{userName}!</Text>
+					<Text style={styles.textName}>{user.name}!</Text>
 				</View>
 
+				<View style={{ width: '100%', height: '25%', alignItems: 'center' }}>
+					<Image source={logo} style={styles.img} />
+				</View>
 				<Text>O que deseja fazer?</Text>
+
+
 				<View style={styles.containerButtons}>
-					<TouchableOpacity style={[styles.button,{width: 120,height: 120}]}>
-						<Icon name="brush" size={48} color="#FFFFFF"></Icon>
-						<Text style={styles.textButton}>Novo Atendimento</Text>
-					</TouchableOpacity>
-					<TouchableOpacity style={[styles.button,{width: 100,height: 100}]}>
-						<Icon name="person" size={48} color="#FFFFFF"></Icon>
-						<Text style={styles.textButton}>Nova Cliente</Text>
-					</TouchableOpacity>
+
+					<ScrollView horizontal={true} style={{ height: '30%', width: '100%' }} >
+
+						<Card icon="brush" size={48} color="#999" text="Novo Atendimento" />
+						<Card icon="person" size={48} color="#999" text="Nova Cliente" />
+						<Card icon="money" size={48} color="#999" text="Finanças" />
+						
+					</ScrollView>
 				</View>
 
 			</View>
-		</SafeAreaView>
+		</SafeAreaView >
 	)
 }
 
@@ -52,28 +69,58 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-around',
 		// backgroundColor: colors.boxBackground,
 	},
-	textHello:{
+	img: {
+		height: '100%',
+		resizeMode: 'contain'
+	},
+	cardContainer: {
+		width: '50%',
+		height: '85%',
+		backgroundColor: '#FFF',
+		justifyContent: 'center',
+		alignItems: 'center',
+		margin: 10,
+		// marginBottom: 20,
+
+		borderRadius: metrics.borderRadius,
+		borderColor: '#d2d2d2',
+		elevation: 10,
+		// borderWidth: 10,
+		// shadowOffset: {
+		// 	width: 10,
+		// 	height: 10
+		// }
+
+
+	},
+	textHello: {
 		fontSize: 22,
 	},
-	textName:{
+	textName: {
 		fontSize: 32,
 		fontWeight: 'bold'
 	},
-	containerButtons:{
-		alignItems: 'center',
-		justifyContent: 'space-around',
-		marginBottom: 30,
+	containerButtons: {
+
+		height: '35%',
+		width: '100%'
+		// alignItems: 'center',
+		// justifyContent: 'space-around',
+		// marginBottom: 30,
 	},
-	button:{
-		backgroundColor: 'gray',
-		marginTop: 30,
-		borderRadius: 80,
+	button: {
+		// backgroundColor: 'gray',
+		width: '100%',
+		height: '100%',
+		// marginTop: 30,
+		// borderRadius: 80,
 		alignItems: 'center',
 		justifyContent: 'center'
 
+
 	},
-	textButton:{
+	textButton: {
 		fontSize: 12,
-		color: '#FFFFFF'
+		color: '#555'
 	}
 })
