@@ -122,6 +122,20 @@ export const UserService = {
 						.set(newUser)
 						.then(()=>{
 							console.log('User added!',result);
+
+							const newBalance = {
+								user: newUser,
+								balance: 0
+							}
+
+							firestore()
+							.collection('Balance')
+							.doc(user.uid)
+							.set(newBalance)
+							.then(()=>{
+								console.log('Balance added!');								
+							})
+
 						})
 						.catch((e) => {
 							throw e

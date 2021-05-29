@@ -2,7 +2,9 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 
 import {useAuth} from './user.context';
+import {useFinancial} from './financial.context';
 import {CustomerServiceService} from '../services/CustomerServices.service'
+
 
 export const CustomerServicesContext = createContext();
 
@@ -12,6 +14,7 @@ export const CustomerServicesProvider = ({ children }) => {
 	const [loading, setLoading] = useState(true);
 	
 	const {user} = useAuth();
+	const {createPayment} = useFinancial();
 	
 	useEffect(() => {
 
@@ -26,6 +29,7 @@ export const CustomerServicesProvider = ({ children }) => {
 		try {
 
 			await CustomerServiceService.createCustomerService({...newCustomerService,user});
+			await createPayment(newCustomerService);
 
 		} catch (error) {
 
