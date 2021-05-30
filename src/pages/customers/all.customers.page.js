@@ -1,12 +1,16 @@
 import React from 'react'
-import { Text, SafeAreaView, StyleSheet, Alert, TouchableOpacity } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import ListItens from '../../components/listItens'
+import Header from '../../components/header'
 import { useCustomers } from '../../contexts/customers.context'
+import logo from '../../../assets/001-women.png'
+import { colors, metrics } from '../../styles'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export default function Customers({ navigation }) {
 	const { customers, loading, exists, createCustomer, updateCustomer, deleteCustomer } = useCustomers();
 
-	
+
 	function goToNewCustomerPage() {
 
 		navigation.navigate('new.customer', {
@@ -17,9 +21,11 @@ export default function Customers({ navigation }) {
 
 	function NewCustomerButton() {
 		return (
-			<TouchableOpacity onPress={goToNewCustomerPage}>
-				<Text>Cadastre um Cliente ;)</Text>
-			</TouchableOpacity>
+			<View style={styles.button}>
+				<TouchableOpacity onPress={goToNewCustomerPage}>
+					<Text>Cadastre um Cliente ;)</Text>
+				</TouchableOpacity>
+			</View>
 		)
 	};
 
@@ -61,8 +67,28 @@ export default function Customers({ navigation }) {
 
 		return (
 			<SafeAreaView style={styles.container}>
-				<NewCustomerButton />
-				<ListItens content={listCustomers} actionPressItem={actionPress} actionMenuItem={actionMenu} icon="delete" />
+
+				<Header/>
+				<View style={{ width: '100%', height: '40%', alignItems: 'center' }}>
+					<Image source={logo} style={styles.img} />
+				</View>
+
+				<View style={styles.containerList}>
+
+					<View style={styles.headerList}>
+
+						<Text style={styles.title}>Clientes</Text>
+
+						<TouchableOpacity onPress={goToNewCustomerPage}>
+							<Icon name="add" size={32} color={colors.iconDark} />
+						</TouchableOpacity>
+					</View>
+
+					<ListItens content={listCustomers} actionPressItem={actionPress} actionMenuItem={actionMenu} icon="delete" />
+				</View>
+				{/* <View style={{ height: '8%', alignItems: 'center', margin: 10 }}>
+					<NewCustomerButton />
+				</View> */}
 			</SafeAreaView>
 		)
 	} else {
@@ -80,5 +106,45 @@ const styles = StyleSheet.create({
 	container: {
 		width: '100%',
 		flex: 1,
+	},
+	title: {
+		fontSize: 18,
+		fontWeight: 'bold',
+		color: colors.title,
+		// marginBottom: 10
+		paddingBottom: 10,
+
+
+	},
+	img: {
+		height: '100%',
+		resizeMode: 'contain'
+	},
+	containerList: {
+		backgroundColor: colors.boxBackground,
+		height: '45%',
+		margin: 10,
+		padding: 10,
+
+		borderRadius: metrics.borderRadius
+	},
+	headerList: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		paddingLeft: 15,
+		paddingRight: 15,
+		paddingBottom: 5,
+		borderBottomWidth: 1,
+		borderColor: '#888'
+	},
+
+	button: {
+		backgroundColor: colors.actionButton,
+		height: '100%',
+		width: '70%',
+		alignItems: 'center',
+		justifyContent: 'center',
+
+		borderRadius: metrics.borderRadius
 	}
 })
