@@ -16,7 +16,7 @@ export default function CustomerRoutes() {
 		{/* options={getScreenRightButtonOption()} /> */}
 	return (
 		<CustomerRoutesStack.Navigator >
-			<CustomerRoutesStack.Screen name="all.customers" component={CustomerPage} options={{title: 'Clientes'}}/>
+			<CustomerRoutesStack.Screen name="all.customers" component={CustomerPage} options={{title: 'Clientes', headerShown: false}}/>
 			<CustomerRoutesStack.Screen name="new.customer" component={CustomerDetailPage} options={{title: 'Novo Cliente'}}/>
 			<CustomerRoutesStack.Screen name="detail.customer" component={CustomerDetailPage} options={{title: 'Detalhes de Cliente'}}/>
 		</CustomerRoutesStack.Navigator>

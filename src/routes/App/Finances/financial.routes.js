@@ -18,7 +18,7 @@ export default function FinancialRoutes() {
 		{/* options={getScreenRightButtonOption()} /> */}
 	return (
 		<FinancialRoutesStack.Navigator >
-			<FinancialRoutesStack.Screen name="all.financials" component={FinancialPage} options={{title: 'Financeiro'}}/>
+			<FinancialRoutesStack.Screen name="all.financials" component={FinancialPage} options={{title: 'Financeiro', headerShown: false}}/>
 			<FinancialRoutesStack.Screen name="new.financial" component={FinancialDetailPage} options={{title: 'Novo Pagamento'}}/>
 			<FinancialRoutesStack.Screen name="detail.financial" component={FinancialDetailPage} options={{title: 'Detalhes de Pagamento'}}/>
 			<FinancialRoutesStack.Screen name="closing.financials" component={FinancialClosingPage} options={{title: 'Fechamento'}}/>

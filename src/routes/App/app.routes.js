@@ -68,18 +68,61 @@ export default function AppRoutes() {
 									activeTintColor: '#4671C6',
 									inactiveTintColor: '#888',
 									activeBackgroundColor: '#FFF',
-									inactiveBackgroundColor: '#FFF',									
+									inactiveBackgroundColor: '#FFF',
+									keyboardHidesTabBar: true,
 									showLabel: true,
 									style: {
-										height: 60
+										height: 60,
+										elevation: 0,
+										borderTopWidth: 0
 									}
 								}}
 							>
-								<AppTabBotton.Screen name="home" component={HomePage} options={{ tabBarLabel: 'Home' }} />
-								<AppTabBotton.Screen name="customers" component={CustomersRoutes} options={{ tabBarLabel: 'Clientes' }} />
-								<AppTabBotton.Screen name="newProcedure" component={ProceduresPage} />
-								<AppTabBotton.Screen name="finances" component={FinancialRoutes} options={{ tabBarLabel: 'Finanças' }} />
-								<AppTabBotton.Screen name="config" component={ConfigurationRoutes} options={{ tabBarLabel: 'Configurações' }} />
+								<AppTabBotton.Screen
+									name="home"
+									component={HomePage}
+									options={{ tabBarLabel: 'Home' }}
+								/>
+								<AppTabBotton.Screen
+									name="customers"
+									component={CustomersRoutes}
+									options={{ tabBarLabel: 'Clientes' }}
+									listeners={({ navigation, route }) => ({
+										tabPress: e => {
+											// Prevent default action
+											e.preventDefault();
+											// Do something with the `navigation` object
+											navigation.navigate('customers', { screen: 'all.customers' });
+										},
+									})} />
+								<AppTabBotton.Screen
+									name="newProcedure"
+									component={ProceduresPage} />
+								<AppTabBotton.Screen
+									name="finances"
+									component={FinancialRoutes}
+									options={{ tabBarLabel: 'Finanças' }}
+									listeners={({ navigation, route }) => ({
+										tabPress: e => {
+											// Prevent default action
+											e.preventDefault();
+											// Do something with the `navigation` object
+											navigation.navigate('finances', { screen: 'all.financials' });
+										},
+									})} />
+								<AppTabBotton.Screen
+									name="config"
+									component={ConfigurationRoutes}
+									options={{ tabBarLabel: 'Configurações' }}
+									listeners={({ navigation, route }) => ({
+										tabPress: e => {
+											// Prevent default action
+											e.preventDefault();
+											// Do something with the `navigation` object
+											navigation.navigate('config', { screen: 'configPage' });
+										},
+									})}
+								/>
 							</AppTabBotton.Navigator>
 
 						</CustomerServicesProvider>
