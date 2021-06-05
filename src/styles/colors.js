@@ -3,13 +3,16 @@ const colors = {
 	statusBarStyle:"dark-content",
 	
 	// background: '#F8F8F8',
-	background: '#E1E1e1',
+	background: '#e5e5e5',
 	boxBackground: '#FFF',
-	actionButton: '#4671C6',
+	actionButton: '#93b8f0',
 
-	title: '#555',
+	title: '#D2D2D2',
 	subtitle: '#888',
-	
+	textDark: '#555',
+	textLight: '#D2D2D2',
+	textHighlight: '#AD363B',
+	//#567AA0
 	iconDark: '#555',
 	iconLight: '#AAA',
 };
