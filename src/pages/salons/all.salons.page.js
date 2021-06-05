@@ -1,7 +1,8 @@
 import React from 'react'
 import { Text,View, SafeAreaView,Image, StyleSheet, Alert, TouchableOpacity } from 'react-native'
 import ListItens from '../../components/listItens'
-import Header from '../../components/header'
+
+import { Container,ContainerList, Header } from '../../components/container'
 
 import { useSalon } from '../../contexts/salons.context'
 
@@ -66,30 +67,18 @@ export default function Salons({ navigation }) {
 		};
 
 		return (
-			<SafeAreaView style={styles.container}>
+			<Container>
 
 				<Header/>
-				<View style={{ width: '100%', height: '40%', alignItems: 'center' }}>
+
+				<View style={{ width: '100%', height: '30%', alignItems: 'center' }}>
 					<Image source={logo} style={styles.img} />
 				</View>
 
-				<View style={styles.containerList}>
-
-					<View style={styles.headerList}>
-
-						<Text style={styles.title}>Salões</Text>
-
-						<TouchableOpacity onPress={goToNewSalonPage}>
-							<Icon name="add" size={32} color={colors.iconDark} />
-						</TouchableOpacity>
-					</View>
-
+				<ContainerList title="Salões" onPress={goToNewSalonPage}>
 					<ListItens content={listSalons} actionPressItem={actionPress} actionMenuItem={actionMenu} icon="delete" />
-				</View>
-				{/* <View style={{ height: '8%', alignItems: 'center', margin: 10 }}>
-					<NewCustomerButton />
-				</View> */}
-			</SafeAreaView>
+				</ContainerList>
+			</Container>
 		)
 	} else {
 
@@ -103,49 +92,11 @@ export default function Salons({ navigation }) {
 };
 
 const styles = StyleSheet.create({
-	container: {
-		width: '100%',
-		flex: 1,
-	},
-	title: {
-		fontSize: 18,
-		fontWeight: 'bold',
-		color: colors.title,
-		// marginBottom: 10
-		paddingBottom: 10,
 
 
-	},
 	img: {
 		height: '100%',
 		resizeMode: 'contain'
 	},
-	containerList: {
-		backgroundColor: colors.boxBackground,
-		height: '45%',
-		margin: 10,
-		padding: 10,
-
-		borderRadius: metrics.borderRadius
-	},
-	headerList: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		paddingLeft: 15,
-		paddingRight: 15,
-		paddingBottom: 5,
-		borderBottomWidth: 1,
-		borderColor: '#888'
-	},
-
-	button: {
-		backgroundColor: colors.actionButton,
-		height: '100%',
-		width: '70%',
-		alignItems: 'center',
-		justifyContent: 'center',
-
-		borderRadius: metrics.borderRadius
-	}
 
 })

@@ -1,23 +1,26 @@
 import React from 'react'
-import { ScrollView, SafeAreaView, StatusBar, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import { ScrollView, SafeAreaView, StatusBar, StyleSheet, View, TouchableOpacity, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import logo from '../../assets/005-beleza.png'
 import avatar from '../../assets/LogoPV_Preto.png'
+import {Container,Header} from '../components/container'
 import { colors, metrics } from '../styles'
 import { useAuth } from '../contexts/user.context'
-import Header from '../components/header'
 import { useCustomers } from '../contexts/customers.context';
 import { useCustomerServices } from '../contexts/customerService.context';
+import { Text } from '../components/basics';
+
 function Card({ children, icon, size, color, text, onPress }) {
 	return (
 		<View style={styles.cardContainer}>
 			<TouchableOpacity style={styles.button} onPress={onPress}>
-				<Icon name={icon} size={size} color={color}></Icon>
-				<Text style={styles.textButton}>{text}</Text>
+				<Icon name={icon} size={size} color={colors.iconDark}></Icon>
+				<Text small bold color={colors.textHighlight}>{text}</Text>
 			</TouchableOpacity>
 		</View>
 	)
 }
+
 export default function HomePage({ navigation }) {
 	const { user } = useAuth()
 	const { createCustomer } = useCustomers();
@@ -48,45 +51,67 @@ export default function HomePage({ navigation }) {
 		})
 	}
 
+	function goToSalons() {
+
+		navigation.navigate('config', {
+			screen: 'salons',
+			params: {
+				screen: 'all.salons',				
+			}
+		})
+	}
+
+	function goToFinances() {
+
+		navigation.navigate('finances', {
+			screen: 'all.financials'
+		})
+	}
+
 	return (
 
-		<SafeAreaView style={styles.background}>
-			<StatusBar
+		<Container>
+			{/* <StatusBar
 				barStyle={colors.statusBarStyle}
-				backgroundColor={colors.background}
-			/>
-			<Header />
-			<View style={styles.container}>
-				<View style={styles.containerHeader}>
-					<View>
-						<Text style={styles.textHello}>Olá</Text>
-						<Text style={styles.textName}>{user.name}!</Text>
-					</View>
-					<View style={styles.avatarContainer}>						
+				backgroundColor={colors.boxBackground}
+			/>*/}
+			<Header /> 
+			<View style={styles.firstcontainer}>
+				{/* <View style={styles.containerHeader}> */}
+				<View>
+					<Text large bold dark>Olá</Text>
+					<Text title heavy dark>{user.name}!</Text>
+				</View>
+				{/* <View style={styles.avatarContainer}>						
 						<Image source={avatar} style={styles.avatar} />
-					</View>
-				</View>
+					</View> */}
+				{/* </View> */}
 
-				<View style={{ width: '100%', height: '60%', alignItems: 'center' }}>
-					<Image source={logo} style={styles.img} />
-				</View>
+				{/* <View style={{ width: '100%', height: '60%', alignItems: 'center' }}>
+					<Image source={avatar} style={styles.img} />
+				</View> */}
 			</View>
 
 			<View style={styles.container}>
-				<Text>O que deseja fazer?</Text>
+				<View style={{margin:12}}>
+
+					<Text bold center >O que deseja fazer?</Text>
+				</View>
 				<View style={styles.containerButtons}>
 
 					{/* <ScrollView horizontal={true} style={{ height: '30%', width: '100%' }} > */}
 
 					<Card icon="brush" size={48} color={colors.actionButton} text="Novo Atendimento" onPress={goToNewCustomerService} />
 					<Card icon="person" size={48} color={colors.actionButton} text="Nova Cliente" onPress={goToNewCustomer} />
-					{/* <Card icon="money" size={48} color="#999" text="Finanças" /> */}
+					<Card icon="store" size={48} color={colors.actionButton} text="Salões" onPress={goToSalons} />
+					<Card icon="payments" size={48} color={colors.actionButton} text="Finanças" onPress={goToFinances} />
+					
 
 					{/* </ScrollView> */}
 				</View>
 
 			</View>
-		</SafeAreaView >
+		</Container >
 	)
 }
 
@@ -94,16 +119,29 @@ export default function HomePage({ navigation }) {
 const styles = StyleSheet.create({
 	background: {
 		height: '100%',
-		backgroundColor: colors.boxBackground
+		backgroundColor: '#FFF'
+	},
+	firstcontainer: {
+		// marginLeft: 20,
+		// marginRight: 20,
+		// marginBottom: 20,
+		padding: 10,
+		height: '15%', // Corrigir condiderando 100% menos altura da TabBar
+		// borderRadius: 10,
+		// borderBottomLeftRadius: 30,
+		// borderBottomRightRadius: 30,
+		// justifyContent: 'space-around',
+		backgroundColor: colors.boxBackground,
+
 	},
 	container: {
-		marginLeft: 20,
-		marginRight: 20,
-		marginBottom: 20,
+		marginLeft: 0,
+		marginRight: 0,
+		marginBottom: 10,
 		padding: 10,
-		height: '42%', // Corrigir condiderando 100% menos altura da TabBar
-		borderRadius: 10,
-		justifyContent: 'space-around',
+		// height: '72%', // Corrigir condiderando 100% menos altura da TabBar
+		borderRadius: 4,
+		// justifyContent: 'space-around',
 		backgroundColor: colors.background,
 	},
 	containerHeader: {
@@ -113,7 +151,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 	},
 	img: {
-		height: '100%',
+		// height: '100%',
+		height: 100,
 		resizeMode: 'contain'
 	},
 	avatarContainer: {
@@ -130,8 +169,8 @@ const styles = StyleSheet.create({
 		resizeMode: 'contain',
 	},
 	cardContainer: {
-		width: '45%',
-		height: '100%',
+		width: '44%',
+		// height: '100%',
 		backgroundColor: colors.boxBackground,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -141,34 +180,31 @@ const styles = StyleSheet.create({
 		borderRadius: metrics.borderRadius,
 		elevation: 10,
 	},
-	textHello: {
-		fontSize: 22,
-	},
-	textName: {
-		fontSize: 32,
-		fontWeight: 'bold'
-	},
+	// textHello: {
+	// 	fontSize: 22,
+	// },
+	// textName: {
+	// 	fontSize: 32,
+	// 	fontFamily: 'Montserrat-Thin',
+	// 	// fontWeight: '200'
+	// },
 	containerButtons: {
 		flexDirection: 'row',
 		height: '70%',
-		width: '100%'
-		// alignItems: 'center',
-		// justifyContent: 'space-around',
+		width: '100%',
+		flexWrap: 'wrap',
+		alignItems: 'center',
+		justifyContent: 'space-around',
 		// marginBottom: 30,
 	},
 	button: {
 		// backgroundColor: 'gray',
 		width: '100%',
-		height: '100%',
+		height: '60%',
 		// marginTop: 30,
 		// borderRadius: 80,
 		alignItems: 'center',
 		justifyContent: 'center'
 
-
 	},
-	textButton: {
-		fontSize: 12,
-		color: colors.actionButton
-	}
 })
