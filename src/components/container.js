@@ -8,13 +8,52 @@ import { useAuth } from '../contexts/user.context'
 
 
 export const StyledContainer = styled.SafeAreaView`
+
 	height: 100%;
+	width: 100%;
 	background-color: ${colors.boxBackground};
+	padding: ${(props) => props.padding ?? 0};
+	margin: ${(props) => props.margin ?? 0};
+
+	
+	${({ row, rowReverse }) => {
+		switch (true) {
+			case row:
+				return `flex-direction: row;`
+			case rowReverse:
+				return `flex-direction: row-reverse;`
+			default:
+				return `flex-direction: column;`
+		}
+	}}
+
+	${({ justifyBetween, justifyAround, justifyCenter }) => {
+		switch (true) {
+			case justifyBetween:
+				return `justify-content: space-between ;`
+			case justifyAround:
+				return `justify-content: space-around ;`
+			case justifyCenter:
+				return `justify-content: center ;`
+			default:
+				return `justify-content: flex-start ;`
+		}
+	}}
+
+	${({ center }) => {
+		switch (true) {
+			case center:
+				return `align-items: center ;`
+			default:
+				return `align-items: flex-start ;`
+		}
+	}}
+
 `;
 
 export function Container({ ...props }) {
 	return (
-		<StyledContainer>
+		<StyledContainer {...props}>
 			<StatusBar
 				barStyle={colors.statusBarStyle}
 				backgroundColor={colors.boxBackground}
@@ -26,66 +65,102 @@ export function Container({ ...props }) {
 
 
 const ContainerHeader = styled.View`
+	/* width: 100%; */
 	background-color: ${colors.boxBackground};
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	margin-left:10;
-	margin-right:10;
-	padding-top: 10;
-	padding-bottom: 10;
+	padding: ${(props) => props.padding ?? `10px`};
+	margin: ${(props) => props.margin ?? `10px`};
 
-	border-bottom-width: .5;
+	border-bottom-width: .5px;
 `;
 
 
 export function Header() {
 	const { logOut } = useAuth();
 	return (
+		<View style={{width: '100%'}}>
+			<ContainerHeader>
+				<Text large heavy>ProBeaty</Text>
+				<View style={{ flexDirection: 'row', width: '22%', justifyContent: 'space-between' }}>
 
-		<ContainerHeader>
-			<Text large heavy>ProBeaty</Text>
-			<View style={{ flexDirection: 'row', width: '22%', justifyContent: 'space-between' }}>
-
-				<TouchableOpacity onPress={logOut}>
-					<Icon name="settings" size={34} color={colors.iconDark} />
-				</TouchableOpacity>
-				<TouchableOpacity onPress={logOut}>
-					<Icon name="logout" size={34} color={colors.iconDark} />
-				</TouchableOpacity>
-			</View>
-		</ContainerHeader>
+					<TouchableOpacity onPress={logOut}>
+						<Icon name="settings" size={34} color={colors.iconDark} />
+					</TouchableOpacity>
+					<TouchableOpacity onPress={logOut}>
+						<Icon name="logout" size={34} color={colors.iconDark} />
+					</TouchableOpacity>
+				</View>
+			</ContainerHeader>
+		</View>
 	)
 }
 
-const StyledContainerList = styled.View`
+const StyledBox = styled.View`
 	background-color: ${colors.background};
-	height: 55%;
-	margin: ${(props) => props.margin ?? '10px'};
-	padding: ${(props) => props.padding ?? '5px'};
+	width: ${(props) => props.width ?? `95%`};
+	/* height: 55%; */
+	flex: 1;
+	
+
+	margin: ${(props) => props.margin ?? `10px`};
+	padding: ${(props) => props.padding ?? '10px'};
+
 	border-radius: ${metrics.borderRadius};	
+
+	${({ justifyBetween, justifyAround, justifyCenter }) => {
+		switch (true) {
+			case justifyBetween:
+				return `justify-content: space-between ;`
+			case justifyAround:
+				return `justify-content: space-around ;`
+			case justifyCenter:
+				return `justify-content: center ;`
+			default:
+				return `justify-content: flex-start ;`
+		}
+	}}
+
+	${({ center }) => {
+		switch (true) {
+			case center:
+				return `align-items: center ;`
+			default:
+				return `align-items: flex-start ;`
+		}
+	}}
 `;
 
+export function Box({ ...props }) {
+	return (
+		<StyledBox {...props}>
+			{!!props.title && <Text large bold dark padding="10px">{props.title}</Text>}
+			{props.children}
+		</StyledBox>
+	);
+}
+
 const StyledHeaderList = styled.View`
+	width: 100%;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	margin: 0 10px;
-	padding: 0 0px 5px;
-	border-bottom-width: .5;
+	margin: 0;
+	padding: 0 10px 5px;
+	border-bottom-width: .5px;
 `;
 
 export function ContainerList({ ...props }) {
 	return (
-		<StyledContainerList {...props}>
+		<Box {...props}>
 			<StyledHeaderList>
-				<Text title bold dark>{props.title}</Text>
+				<Text title bold dark>{props.listTitle}</Text>
 				<TouchableOpacity onPress={props.onPress}>
 					<Icon name="add" size={32} color={colors.iconDark} />
 				</TouchableOpacity>
 			</StyledHeaderList>
 			{props.children}
-		</StyledContainerList>
+		</Box>
 	);
-
 }
