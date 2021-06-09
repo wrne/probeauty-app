@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { ScrollView, StatusBar, SafeAreaView, StyleSheet, Text, View, Switch } from 'react-native'
+import { ScrollView, StatusBar, SafeAreaView, StyleSheet,View, Switch } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 // import {  } from 'react-native-gesture-handler'
-import { Input, ActionButton } from '../../components/basics';
+import { Input, Text, ActionButton } from '../../components/basics';
 
 export default function DetailCustomer({ route, navigation }) {
 
@@ -52,22 +52,21 @@ export default function DetailCustomer({ route, navigation }) {
 			<ScrollView style={styles.scrollView} >
 
 				{/* <TextInput style={styles.text} onChangeText={(t)=>setName(t)} placeholder="Name" value={name}/> */}
-				<Text>Dados Pessoais</Text>
+				<Text bold margin={"10px 0px"}>Dados Pessoais</Text>
 				<Input onChangeText={(t) => setName(t)} placeholder="Name" value={name} />
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-
 					<Input style={{ width: '40%' }} onChangeText={(t) => setBirth(t)} placeholder="Birth" value={birth} />
 					<Input style={{ width: '55%' }} onChangeText={(t) => setPhone(t)} placeholder="Phone" value={phone} />
 				</View>
 				<Input onChangeText={(t) => setEmail(t)} placeholder="Email" value={email} />
-				<Text>Dados Comerciais</Text>
+				<Text bold>Dados Comerciais</Text>
 				<Input style={{ width: '50%' }} onChangeText={(t) => setDiscount(t)} placeholder="Discount" value={discount} />
 				{/* <Input onChangeText={(t)=>setCanUsePhoto(t)} placeholder="CanUsePhoto" value={canUsePhoto}/> */}
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
 					<Text>Pode usar a foto?</Text>
 					<Switch onValueChange={(newValue) => setCanUsePhoto(newValue)} value={canUsePhoto} />
 				</View>
-				<Text>Cílios</Text>
+				<Text bold>Cílios</Text>
 				<Input onChangeText={(t) => setMappingType(t)} placeholder="MappingType" value={mappingType} />
 				<Input onChangeText={(t) => setMapping(t)} placeholder="Mapping" value={mapping} />
 				<Input onChangeText={(t) => setThickness(t)} placeholder="Thickness" value={thickness} />
@@ -75,7 +74,7 @@ export default function DetailCustomer({ route, navigation }) {
 
 				<View style={{ alignItems: 'center' }}>
 
-					<ActionButton style={styles.button} onPress={handleAction}>
+					<ActionButton onPress={handleAction}>
 						<Text>{operation === 'insert' ? 'Criar' : 'Salvar AltArações'}</Text>
 					</ActionButton>
 				</View>
@@ -94,8 +93,5 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		fontSize: 12,
-	},
-	button: {
-		height: 40,
 	},
 });
