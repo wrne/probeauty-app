@@ -1,12 +1,15 @@
 import React from 'react'
-import { Text, SafeAreaView, StyleSheet, Alert, TouchableOpacity } from 'react-native'
+import { View, Image,Text, SafeAreaView, StyleSheet, Alert, TouchableOpacity } from 'react-native'
 import ListItens from '../../components/listItens'
+import logo from '../../../assets/eyebrow.png'
 import { useProcedure } from '../../contexts/procedures.context'
+
+import { Container,ContainerList, Header } from '../../components/container'
 
 export default function Procedures({ navigation }) {
 	const { procedures, loading, exists, createProcedure, updateProcedure, deleteProcedure } = useProcedure();
 
-	
+
 	function goToNewProcedurePage() {
 
 		navigation.navigate('new.procedure', {
@@ -60,10 +63,19 @@ export default function Procedures({ navigation }) {
 		};
 
 		return (
-			<SafeAreaView style={styles.container}>
-				<NewProcedureButton />
-				<ListItens content={listProcedures} actionPressItem={actionPress} actionMenuItem={actionMenu} icon="delete" />
-			</SafeAreaView>
+			<Container>
+
+				<Header />
+
+				<View style={{ width: '100%', height: '30%', alignItems: 'center' }}>
+					<Image source={logo} style={styles.img} />
+				</View>
+
+				<ContainerList listTitle="Procedimentos" onPress={goToNewProcedurePage}>
+					<ListItens content={listProcedures} actionPressItem={actionPress} actionMenuItem={actionMenu} icon="delete" />
+				</ContainerList>
+
+			</Container>
 		)
 	} else {
 

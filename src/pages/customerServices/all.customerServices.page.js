@@ -1,12 +1,14 @@
 import React from 'react'
-import { Text, SafeAreaView, StyleSheet, Alert, TouchableOpacity } from 'react-native'
+import { View, Image, Text, SafeAreaView, StyleSheet, Alert, TouchableOpacity } from 'react-native'
+import { Container, ContainerList, Header } from '../../components/container'
 import ListItens from '../../components/listItens'
 import { useCustomerServices } from '../../contexts/customerService.context'
+import logo from '../../../assets/003-lashes.png'
 
 export default function CustomerServices({ navigation }) {
 	const { customerServices, loading, exists, createCustomerService, updateCustomerService, deleteCustomerService } = useCustomerServices();
 
-	
+
 	function goToNewCustomerServicePage() {
 
 		navigation.navigate('new.customerService', {
@@ -60,10 +62,19 @@ export default function CustomerServices({ navigation }) {
 		};
 
 		return (
-			<SafeAreaView style={styles.container}>
-				<NewCustomerServiceButton />
-				<ListItens content={listCustomerServices} actionPressItem={actionPress} actionMenuItem={actionMenu} icon="delete" />
-			</SafeAreaView>
+			<Container>
+
+				<Header />
+
+				<View style={{ width: '100%', height: '30%', alignItems: 'center' }}>
+					<Image source={logo} style={styles.img} />
+				</View>
+
+				<ContainerList listTitle="Atendimentos" onPress={goToNewCustomerServicePage}>
+					<ListItens content={listCustomerServices} actionPressItem={actionPress} actionMenuItem={actionMenu} icon="delete" />
+				</ContainerList>
+
+			</Container>
 		)
 	} else {
 
