@@ -75,7 +75,7 @@ export default function Customers({ navigation }) {
 					<Image source={logo} style={styles.img} />
 				</View>
 
-				<ContainerList title="Clientes" onPress={goToNewCustomerPage}>
+				<ContainerList listTitle="Clientes" onPress={goToNewCustomerPage}>
 					<ListItens content={listCustomers} actionPressItem={actionPress} actionMenuItem={actionMenu} icon="delete" />
 				</ContainerList>
 

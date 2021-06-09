@@ -75,7 +75,7 @@ export default function Salons({ navigation }) {
 					<Image source={logo} style={styles.img} />
 				</View>
 
-				<ContainerList title="Salões" onPress={goToNewSalonPage}>
+				<ContainerList listTitle="Salões" onPress={goToNewSalonPage}>
 					<ListItens content={listSalons} actionPressItem={actionPress} actionMenuItem={actionMenu} icon="delete" />
 				</ContainerList>
 			</Container>
