@@ -16,7 +16,7 @@ export default function SalonsRoutes() {
 		{/* options={getScreenRightButtonOption()} /> */}
 	return (
 		<SalonsRoutesStack.Navigator >
-			<SalonsRoutesStack.Screen name="all.salons" component={SalonsPage} options={{title: 'Salões'}}/>
+			<SalonsRoutesStack.Screen name="all.salons" component={SalonsPage} options={{headerShown: false }}/>
 			<SalonsRoutesStack.Screen name="new.salon" component={SalonsDetailPage} options={{title: 'Novo Salão'}}/>
 			<SalonsRoutesStack.Screen name="detail.salon" component={SalonsDetailPage} options={{title: 'Detalhes de Salão'}}/>
 		</SalonsRoutesStack.Navigator>
