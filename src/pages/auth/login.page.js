@@ -5,23 +5,23 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { useAuth } from '../../contexts/user.context';
-import logo from '../../../assets/beleza.png';
+import logo from '../../../assets/013-oi.png';
 
 // import { useMessages } from '../contexts/message.context';
 import {colors, metrics}  from '../../styles';
 
 export default function loginPage({ navigation }) {
 
-	// Schema de validaÁ„o dos campos do formul·rio
+	// Schema de valida√ß√£o dos campos do formul√°rio
 	const validationSchema = yup.object().shape({
 		email: yup
 			.string()
 			.required('Preencha o email')
-			.email('Digite um email v·lido'),
+			.email('Digite um email v√°lido'),
 		password: yup
 			.string()
 			.required('Preencha a senha')
-			.min(6, 'A senha deve ter pelo menos 6 dÌgitos')
+			.min(6, 'A senha deve ter pelo menos 6 d√≠gitos')
 	})
 
 	const { control, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(validationSchema) });
