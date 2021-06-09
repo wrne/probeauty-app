@@ -73,8 +73,8 @@ export default function AppRoutes() {
 									showLabel: true,
 									style: {
 										height: 60,
-										elevation: 0,
-										borderTopWidth: 0
+										elevation: 5,
+										borderTopWidth: 0,
 									}
 								}}
 							>

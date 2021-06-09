@@ -1,10 +1,19 @@
 import React from 'react'
-import {View, Text,SafeAreaView,TouchableOpacity} from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import { Container, Box } from '../../components/container'
+import { Text } from '../../components/basics'
+import styled from 'styled-components/native'
+import { colors } from '../../styles'
 
-export default function Configurations({navigation}){
+import { useAuth } from '../../contexts/user.context'
 
-	function goProcedures(){
-		
+export default function Configurations({ navigation }) {
+
+	const { logOut } = useAuth();
+
+	function goProcedures() {
+
 		// navigation.navigate('config', {
 		// 	screen: 'procedures'
 		//   });
@@ -12,8 +21,8 @@ export default function Configurations({navigation}){
 		navigation.navigate('procedures');
 	}
 
-	function goSalons(){
-		
+	function goSalons() {
+
 		// navigation.navigate('config', {
 		// 	screen: 'procedures'
 		//   });
@@ -21,8 +30,8 @@ export default function Configurations({navigation}){
 		navigation.navigate('salons');
 	}
 
-	function goCustomerServices(){
-		
+	function goCustomerServices() {
+
 		// navigation.navigate('config', {
 		// 	screen: 'procedures'
 		//   });
@@ -30,17 +39,54 @@ export default function Configurations({navigation}){
 		navigation.navigate('customerServices');
 	}
 	return (
-		<SafeAreaView>
-			<Text>Configurations page</Text>
-			<TouchableOpacity onPress={goProcedures}>
-				<Text>Go to Procedures Page</Text>
-			</TouchableOpacity>
-			<TouchableOpacity onPress={goSalons}>
-				<Text>Go to Salons Page</Text>
-			</TouchableOpacity>
-			<TouchableOpacity onPress={goCustomerServices}>
-				<Text>Go to Customer Services Page</Text>
-			</TouchableOpacity>
-		</SafeAreaView>
+		<Container justifyAround style={{ backgroundColor: colors.background }}>
+			<Text title bold dark margin="30px 10px">Configurações</Text>
+
+			<Box style={{ backgroundColor: colors.boxBackground }}>
+				<Item description="Procedimentos" firstIcon="square-foot" onPress={goProcedures} />
+				<Item description="Salões" firstIcon="store" onPress={goSalons} />
+				<Item description="Atendimentos" firstIcon="brush" onPress={goCustomerServices} />
+			</Box>
+			
+			<Box style={{ backgroundColor: colors.boxBackground }}>
+				<Button onPress={logOut}>
+					<Text large bold>Logout</Text>
+					<Icon name="logout" size={34} color={colors.iconDark} />
+				</Button>
+			</Box>
+			
+		</Container>
 	)
 }
+
+function Item({ onPress, description, firstIcon }) {
+	return (
+		<ContainerItem>
+			<Button onPress={onPress}>
+				<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+					<Icon name={firstIcon} size={24} color={colors.iconDark} style={{ marginRight: 8 }} />
+					<Text large bold dark>{description}</Text>
+				</View>
+				<Icon name="chevron-right" size={34} color={colors.iconDark} />
+			</Button>
+		</ContainerItem>
+	);
+}
+
+const ContainerItem = styled.View`
+	width: 100%;
+	align-items: center;
+
+`;
+
+const Button = styled.TouchableOpacity`
+	width: 100%;
+	/* height: 7%; */
+	background-color: ${colors.boxBackground};
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	/* margin: 5px 10px; */
+	padding: 10px;
+	border-radius: 7px;
+`;
