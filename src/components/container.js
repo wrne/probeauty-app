@@ -5,16 +5,16 @@ import { colors, metrics } from '../styles';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { Text } from '../components/basics'
 import { useAuth } from '../contexts/user.context'
+import { useNavigation } from '@react-navigation/native';
 
 
 export const StyledContainer = styled.SafeAreaView`
 
 	height: 100%;
 	width: 100%;
-	background-color: ${colors.boxBackground};
+	background-color: ${(props) => props.color ?? colors.boxBackground};
 	padding: ${(props) => props.padding ?? 0};
 	margin: ${(props) => props.margin ?? 0};
-
 	
 	${({ row, rowReverse }) => {
 		switch (true) {
@@ -27,11 +27,11 @@ export const StyledContainer = styled.SafeAreaView`
 		}
 	}}
 
-	${({ justifyBetween, justifyAround, justifyCenter }) => {
+	${({ spaceBetween, spaceAround, justifyCenter }) => {
 		switch (true) {
-			case justifyBetween:
+			case spaceBetween:
 				return `justify-content: space-between ;`
-			case justifyAround:
+			case spaceAround:
 				return `justify-content: space-around ;`
 			case justifyCenter:
 				return `justify-content: center ;`
@@ -100,20 +100,29 @@ export function Header() {
 const StyledBox = styled.View`
 	background-color: ${colors.background};
 	width: ${(props) => props.width ?? `95%`};
-	/* height: 55%; */
-	flex: 1;
-	
+	${(props) => props.height && `height: ${props.height};`}
 
 	margin: ${(props) => props.margin ?? `10px`};
 	padding: ${(props) => props.padding ?? '10px'};
 
-	border-radius: ${metrics.borderRadius};	
+	border-radius: ${(props) => props.borderRadius ?? metrics.borderRadius};
 
-	${({ justifyBetween, justifyAround, justifyCenter }) => {
+	${({ row, rowReverse }) => {
 		switch (true) {
-			case justifyBetween:
+			case row:
+				return `flex-direction: row;`
+			case rowReverse:
+				return `flex-direction: row-reverse;`
+			default:
+				return `flex-direction: column;`
+		}
+	}}
+
+	${({ spaceBetween, spaceAround, justifyCenter }) => {
+		switch (true) {
+			case spaceBetween:
 				return `justify-content: space-between ;`
-			case justifyAround:
+			case spaceAround:
 				return `justify-content: space-around ;`
 			case justifyCenter:
 				return `justify-content: center ;`
