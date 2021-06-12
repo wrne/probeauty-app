@@ -40,21 +40,28 @@ export default function Configurations({ navigation }) {
 	}
 	return (
 		<Container style={{ backgroundColor: colors.background }}>
-			<Text title bold dark margin="30px 10px">Configurações</Text>
+
+			<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+
+				<TouchableOpacity onPress={() => { navigation.goBack() }}>
+					<Icon name="chevron-left" size={34} color={colors.iconDark} />
+				</TouchableOpacity>
+				<Text title bold dark margin="30px 10px">Configurações</Text>
+			</View>
 
 			<Box style={{ backgroundColor: colors.boxBackground }}>
 				<Item description="Procedimentos" firstIcon="square-foot" onPress={goProcedures} />
 				<Item description="Salões" firstIcon="store" onPress={goSalons} />
 				<Item description="Atendimentos" firstIcon="brush" onPress={goCustomerServices} />
 			</Box>
-			
+
 			<Box style={{ backgroundColor: colors.boxBackground }}>
 				<Button onPress={logOut}>
 					<Text large bold>Logout</Text>
 					<Icon name="logout" size={34} color={colors.iconDark} />
 				</Button>
 			</Box>
-			
+
 		</Container>
 	)
 }
