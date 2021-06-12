@@ -79,18 +79,30 @@ const ContainerHeader = styled.View`
 
 export function Header() {
 	const { logOut } = useAuth();
-	return (
-		<View style={{width: '100%'}}>
-			<ContainerHeader>
-				<Text large heavy>ProBeaty</Text>
-				<View style={{ flexDirection: 'row', width: '22%', justifyContent: 'space-between' }}>
+	const navigation = useNavigation()
 
-					<TouchableOpacity onPress={logOut}>
-						<Icon name="settings" size={34} color={colors.iconDark} />
+	function goToMenu(){
+		navigation.navigate('config', { screen: 'configPage' });
+	}
+
+	return (
+		<View style={{ width: '100%' }}>
+			<ContainerHeader>
+				<View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+				<TouchableOpacity onPress={() => {navigation.goBack()}}>
+						<Icon name="chevron-left" size={34} color={colors.iconDark} />
 					</TouchableOpacity>
-					<TouchableOpacity onPress={logOut}>
+
+					<Text large heavy>ProBeaty</Text>
+				</View>
+				<View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+
+					<TouchableOpacity style={{marginRight: 10}} onPress={goToMenu}>
+						<Icon name="menu" size={34} color={colors.iconDark} />
+					</TouchableOpacity>
+					{/* <TouchableOpacity onPress={logOut}>
 						<Icon name="logout" size={34} color={colors.iconDark} />
-					</TouchableOpacity>
+					</TouchableOpacity> */}
 				</View>
 			</ContainerHeader>
 		</View>
