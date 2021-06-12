@@ -70,7 +70,7 @@ const ContainerHeader = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	padding: ${(props) => props.padding ?? `10px`};
+	padding: ${(props) => props.padding ?? `10px 0px`};
 	margin: ${(props) => props.margin ?? `10px`};
 
 	border-bottom-width: .5px;
@@ -81,7 +81,7 @@ export function Header() {
 	const { logOut } = useAuth();
 	const navigation = useNavigation()
 
-	function goToMenu(){
+	function goToMenu() {
 		navigation.navigate('config', { screen: 'configPage' });
 	}
 
@@ -89,7 +89,7 @@ export function Header() {
 		<View style={{ width: '100%' }}>
 			<ContainerHeader>
 				<View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-				<TouchableOpacity onPress={() => {navigation.goBack()}}>
+					<TouchableOpacity onPress={() => { navigation.goBack() }}>
 						<Icon name="chevron-left" size={34} color={colors.iconDark} />
 					</TouchableOpacity>
 
@@ -97,7 +97,7 @@ export function Header() {
 				</View>
 				<View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
 
-					<TouchableOpacity style={{marginRight: 10}} onPress={goToMenu}>
+					<TouchableOpacity style={{ marginRight: 10 }} onPress={goToMenu}>
 						<Icon name="menu" size={34} color={colors.iconDark} />
 					</TouchableOpacity>
 					{/* <TouchableOpacity onPress={logOut}>
