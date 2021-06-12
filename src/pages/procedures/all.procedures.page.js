@@ -71,7 +71,7 @@ export default function Procedures({ navigation }) {
 					<Image source={logo} style={styles.img} />
 				</View>
 
-				<ContainerList listTitle="Procedimentos" onPress={goToNewProcedurePage}>
+				<ContainerList  height='55%' listTitle="Procedimentos" onPress={goToNewProcedurePage}>
 					<ListItens content={listProcedures} actionPressItem={actionPress} actionMenuItem={actionMenu} icon="delete" />
 				</ContainerList>
 

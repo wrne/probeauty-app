@@ -70,7 +70,7 @@ export default function CustomerServices({ navigation }) {
 					<Image source={logo} style={styles.img} />
 				</View>
 
-				<ContainerList listTitle="Atendimentos" onPress={goToNewCustomerServicePage}>
+				<ContainerList height='55%' listTitle="Atendimentos" onPress={goToNewCustomerServicePage}>
 					<ListItens content={listCustomerServices} actionPressItem={actionPress} actionMenuItem={actionMenu} icon="delete" />
 				</ContainerList>
 

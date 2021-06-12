@@ -39,7 +39,7 @@ export default function Configurations({ navigation }) {
 		navigation.navigate('customerServices');
 	}
 	return (
-		<Container justifyAround style={{ backgroundColor: colors.background }}>
+		<Container style={{ backgroundColor: colors.background }}>
 			<Text title bold dark margin="30px 10px">Configurações</Text>
 
 			<Box style={{ backgroundColor: colors.boxBackground }}>
