@@ -16,9 +16,9 @@ export default function CustomerServiceRoutes() {
 		{/* options={getScreenRightButtonOption()} /> */}
 	return (
 		<CustomerServiceRoutesStack.Navigator >
-			<CustomerServiceRoutesStack.Screen name="all.customerServices" component={CustomerServicePage} options={{title: 'Atendimentos'}}/>
-			<CustomerServiceRoutesStack.Screen name="new.customerService" component={CustomerServiceDetailPage} options={{title: 'Novo Atendimento'}}/>
-			<CustomerServiceRoutesStack.Screen name="detail.customerService" component={CustomerServiceDetailPage} options={{title: 'Detalhes de Atendimento'}}/>
+			<CustomerServiceRoutesStack.Screen name="all.customerServices" component={CustomerServicePage} options={{ headerShown: false }}/>
+			<CustomerServiceRoutesStack.Screen name="new.customerService" component={CustomerServiceDetailPage} options={{ headerShown: false }}/>
+			<CustomerServiceRoutesStack.Screen name="detail.customerService" component={CustomerServiceDetailPage} options={{ headerShown: false }}/>
 		</CustomerServiceRoutesStack.Navigator>
 	);
 };
