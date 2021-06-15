@@ -8,6 +8,8 @@ import { colors } from '../../styles'
 
 import { useAuth } from '../../contexts/user.context'
 
+// import * as Print from 'expo-print';
+
 export default function Configurations({ navigation }) {
 
 	const { logOut } = useAuth();
@@ -38,6 +40,16 @@ export default function Configurations({ navigation }) {
 
 		navigation.navigate('customerServices');
 	}
+	
+	function goSignature() {
+
+		// navigation.navigate('config', {
+		// 	screen: 'procedures'
+		//   });
+
+		navigation.navigate('signature');
+	}
+
 	return (
 		<Container style={{ backgroundColor: colors.background }}>
 
@@ -53,6 +65,7 @@ export default function Configurations({ navigation }) {
 				<Item description="Procedimentos" firstIcon="square-foot" onPress={goProcedures} />
 				<Item description="Salões" firstIcon="store" onPress={goSalons} />
 				<Item description="Atendimentos" firstIcon="brush" onPress={goCustomerServices} />
+				<Item description="Assinatura" firstIcon="article" onPress={goSignature} />
 			</Box>
 
 			<Box style={{ backgroundColor: colors.boxBackground }}>

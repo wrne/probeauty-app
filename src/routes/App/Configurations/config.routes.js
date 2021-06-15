@@ -3,6 +3,7 @@ import { createStackNavigator} from '@react-navigation/stack';
 
 // Pages
 import ConfigPage from '../../../pages/configurations/all.configurations.page';
+import SignaturePage from '../../../pages/customers/Signature';
 
 // Routes
 import ProceduresRoutes from '../Procedures/procedures.routes'
@@ -25,6 +26,7 @@ export default function configRoutes() {
 			<ConfigRoutesStack.Screen name="procedures" component={ProceduresRoutes}options={{ headerShown: false }} />
 			<ConfigRoutesStack.Screen name="salons" component={SalonsRoutes}options={{ headerShown: false }} />
 			<ConfigRoutesStack.Screen name="customerServices" component={CustomerServiceRoutes}options={{ headerShown: false }} />
+			<ConfigRoutesStack.Screen name="signature" component={SignaturePage}options={{ headerShown: false }} />
 		</ConfigRoutesStack.Navigator>
 	);
 };
