@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import {ScrollView, StatusBar, SafeAreaView, StyleSheet, Text, View, TextInput } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, StatusBar, StyleSheet, View } from 'react-native'
 // import {  } from 'react-native-gesture-handler'
+import { Container, Box } from '../../components/container';
+import { Input, Text, ActionButton } from '../../components/basics';
 
 export default function DetailProcedure({ route, navigation }) {
 
 
 	const { procedure, operation, buttonAction } = route.params;
-	console.log('DetailProcedure:',procedure?.description);
+	console.log('DetailProcedure:', procedure?.description);
 
 	const [description, setDescription] = useState(!!procedure?.description ? procedure.description : "")
 	const [cost, setCost] = useState(!!procedure?.cost ? procedure.cost : 0)
@@ -20,7 +21,7 @@ export default function DetailProcedure({ route, navigation }) {
 			description,
 			cost
 		}
-		
+
 		// executa método de edição do procediento
 		await buttonAction(editProcedure)
 
@@ -31,36 +32,29 @@ export default function DetailProcedure({ route, navigation }) {
 	}
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<Container center>
 			<ScrollView style={styles.scrollView} >
-				<TextInput style={styles.text} onChangeText={(t)=>setDescription(t)} placeholder="Descrição" value={description}/>
-				<TextInput style={styles.text} onChangeText={(t)=>setCost(t)} placeholder="Valor" value={cost}/>
-				<TouchableOpacity style={styles.button} onPress={handleAction}>
-					<Text>{operation === 'insert' ? 'Criar' : 'Salvar Alterações'}</Text>
-				</TouchableOpacity>
+				<Box >
+					{operation !== 'insert' && <Text tiny>Procedimento</Text>}
+					<Input onChangeText={(t) => setDescription(t)} placeholder="Descrição" value={description} />
+					{operation !== 'insert' && <Text tiny>Preço</Text>}
+					<Input onChangeText={(t) => setCost(t)} placeholder="Valor" value={cost} />
+				</Box>
+				{/* <TouchableOpacity style={styles.button} onPress={handleAction}> */}
+				<View style={{ alignItems: 'center' }}>
+					<ActionButton onPress={handleAction}>
+						<Text large>{operation === 'insert' ? 'Criar' : 'Salvar Alterações'}</Text>
+					</ActionButton>
+				</View>
 			</ScrollView>
 
-		</SafeAreaView>
+		</Container>
 	)
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		paddingTop: StatusBar.currentHeight,
-	},
-	scrollView: {
-		
-	},
-	text: {
-		fontSize: 12,
-	},
-	button:{
-		width: '90%',
-		height: 40,
-		backgroundColor: 'gray',
 
-		alignItems: 'center',
-		justifyContent: 'center'
+	scrollView: {
+		width: '92%',
 	},
 });

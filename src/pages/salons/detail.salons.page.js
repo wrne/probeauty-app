@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-import {ScrollView, StatusBar, SafeAreaView, StyleSheet, Text, View, TextInput } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, StatusBar, SafeAreaView, StyleSheet, View } from 'react-native'
+
 // import {  } from 'react-native-gesture-handler'
+import { Container, Box } from '../../components/container';
+import { Input, Text, ActionButton } from '../../components/basics';
 
 export default function DetailSalon({ route, navigation }) {
 
 
 	const { salon, operation, buttonAction } = route.params;
-	console.log('DetailSalon:',salon?.description);
+	console.log('DetailSalon:', salon?.description);
 
 	const [name, setName] = useState(!!salon?.name ? salon.name : '')
 	const [address, setAddress] = useState(!!salon?.address ? salon.address : '')
@@ -26,7 +28,7 @@ export default function DetailSalon({ route, navigation }) {
 			paymentDay,
 			salonPays
 		}
-		
+
 		// executa método de edição do procediento
 		await buttonAction(editSalon)
 
@@ -37,19 +39,34 @@ export default function DetailSalon({ route, navigation }) {
 	}
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<Container center>
 			<ScrollView style={styles.scrollView} >
-				<TextInput style={styles.text} onChangeText={(t)=>setName(t)} placeholder="Name" value={name}/>
-				<TextInput style={styles.text} onChangeText={(t)=>setAddress(t)} placeholder="Address" value={address}/>
-				<TextInput style={styles.text} onChangeText={(t)=>setCommission(t)} placeholder="Commission" value={commission}/>
-				<TextInput style={styles.text} onChangeText={(t)=>setPaymentDay(t)} placeholder="PaymentDay" value={paymentDay}/>
-				<TextInput style={styles.text} onChangeText={(t)=>setSalonPays(t)} placeholder="SalonPays" value={salonPays}/>
-				<TouchableOpacity style={styles.button} onPress={handleAction}>
-					<Text>{operation === 'insert' ? 'Criar' : 'Salvar Alterações'}</Text>
-				</TouchableOpacity>
+				<Box>
+					
+					{operation !== 'insert' && <Text tiny>Nome</Text>}
+					<Input style={styles.text} onChangeText={(t) => setName(t)} placeholder="Name" value={name} />
+
+					{operation !== 'insert' && <Text tiny>Endereço</Text>}
+					<Input style={styles.text} onChangeText={(t) => setAddress(t)} placeholder="Address" value={address} />
+					
+					{operation !== 'insert' && <Text tiny>Comissão</Text>}
+					<Input style={styles.text} onChangeText={(t) => setCommission(t)} placeholder="Commission" value={commission} />
+					
+					{operation !== 'insert' && <Text tiny>Dia do Pagamento</Text>}
+					<Input style={styles.text} onChangeText={(t) => setPaymentDay(t)} placeholder="PaymentDay" value={paymentDay} />
+					
+					{operation !== 'insert' && <Text tiny>Salon que paga?</Text>}
+					<Input style={styles.text} onChangeText={(t) => setSalonPays(t)} placeholder="SalonPays" value={salonPays} />
+
+				</Box>
+				<View style={{ alignItems: 'center' }}>
+					<ActionButton onPress={handleAction}>
+						<Text large>{operation === 'insert' ? 'Criar' : 'Salvar Alterações'}</Text>
+					</ActionButton>
+				</View>
 			</ScrollView>
 
-		</SafeAreaView>
+		</Container>
 	)
 }
 
@@ -59,12 +76,12 @@ const styles = StyleSheet.create({
 		paddingTop: StatusBar.currentHeight,
 	},
 	scrollView: {
-		
+		width: '92%',
 	},
 	text: {
 		fontSize: 12,
 	},
-	button:{
+	button: {
 		width: '90%',
 		height: 40,
 		backgroundColor: 'gray',
