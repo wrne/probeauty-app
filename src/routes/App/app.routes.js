@@ -95,7 +95,7 @@ function TabRoutes() {
 			<AppTabBotton.Screen
 				name="newProcedure"
 				component={ProceduresPage} />
-			<AppTabBotton.Screen
+			{/* <AppTabBotton.Screen
 				name="finances"
 				component={FinancialRoutes}
 				options={{ tabBarLabel: 'Finanças' }}
@@ -106,7 +106,7 @@ function TabRoutes() {
 						// Do something with the `navigation` object
 						navigation.navigate('finances', { screen: 'all.financials' });
 					},
-				})} />
+				})} /> */}
 			<AppTabBotton.Screen
 				name="customerServices"
 				component={CustomerServiceRoutes}
@@ -119,7 +119,7 @@ function TabRoutes() {
 						navigation.navigate('customerServices', { screen: 'all.customerServices' });
 					},
 				})} />
-			{/* <AppTabBotton.Screen
+			<AppTabBotton.Screen
 				name="config"
 				component={ConfigurationRoutes}
 				options={{ tabBarLabel: 'Configurações' }}
@@ -131,7 +131,7 @@ function TabRoutes() {
 						navigation.navigate('config', { screen: 'configPage' });
 					},
 				})}
-			/> */}
+			/>
 		</AppTabBotton.Navigator>
 	)
 }
