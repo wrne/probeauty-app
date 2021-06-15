@@ -114,7 +114,7 @@ const StyledBox = styled.View`
 	width: ${(props) => props.width ?? `95%`};
 	${(props) => props.height && `height: ${props.height};`}
 
-	margin: ${(props) => props.margin ?? `10px`};
+	margin: ${(props) => props.margin ?? `5px`};
 	padding: ${(props) => props.padding ?? '10px'};
 
 	border-radius: ${(props) => props.borderRadius ?? metrics.borderRadius};
