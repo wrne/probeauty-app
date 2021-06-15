@@ -17,7 +17,6 @@ export const FinancialService = {
 				querySnapshot.forEach(docSnapShot => {
 
 					const doc = docSnapShot.data()
-					console.log('Query finances...',doc);
 
 					const Financial = {
 						id: docSnapShot.id,
