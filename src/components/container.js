@@ -5,7 +5,7 @@ import { colors, metrics } from '../styles';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { Text } from '../components/basics'
 import { useAuth } from '../contexts/user.context'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 
 export const StyledContainer = styled.SafeAreaView`
@@ -15,6 +15,7 @@ export const StyledContainer = styled.SafeAreaView`
 	background-color: ${(props) => props.color ?? colors.boxBackground};
 	padding: ${(props) => props.padding ?? 0};
 	margin: ${(props) => props.margin ?? 0};
+	/* paddingTop: StatusBar.currentHeight, */
 	
 	${({ row, rowReverse }) => {
 		switch (true) {
@@ -80,8 +81,10 @@ const ContainerHeader = styled.View`
 export function Header() {
 	const { logOut } = useAuth();
 	const navigation = useNavigation()
+	const route = useRoute();
 
 	function goToMenu() {
+		console.log('Route:', route);
 		navigation.navigate('config', { screen: 'configPage' });
 	}
 
@@ -89,11 +92,14 @@ export function Header() {
 		<View style={{ width: '100%' }}>
 			<ContainerHeader>
 				<View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-					<TouchableOpacity onPress={() => { navigation.goBack() }}>
-						<Icon name="chevron-left" size={34} color={colors.iconDark} />
-					</TouchableOpacity>
 
-					<Text large heavy>ProBeaty</Text>
+					{route.name !== 'home' &&
+						<TouchableOpacity onPress={() => { navigation.goBack() }}>
+							<Icon name="chevron-left" size={34} color={colors.iconDark} />
+						</TouchableOpacity>
+					}
+
+					<Text large heavy margin={'0px 5px'}>ProBeaty</Text>
 				</View>
 				<View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
 
