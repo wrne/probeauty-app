@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
-import { KeyboardAvoidingView, StatusBar, StyleSheet, Text, TextInput, View, TouchableOpacity, Image, Alert, ScrollView } from 'react-native';
+import { KeyboardAvoidingView, StatusBar, StyleSheet, TextInput, View, TouchableOpacity, Image, Alert, ScrollView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
+import { Text, Input, ActionButton } from '../../components/basics';
+import { Container } from '../../components/container';
 import { useAuth } from '../../contexts/user.context';
 import logo from '../../../assets/013-oi.png';
 
@@ -39,13 +41,17 @@ export default function loginPage({ navigation }) {
 	}
 
 	return (
-		<View style={styles.background}>
+		// <View style={styles.background}>
+		<Container center>
 			<StatusBar
 				hidden
 			/>
 			<View style={styles.containerLogo}>
 				<Image source={logo} style={styles.logo} ></Image>
+			<Text large dark center margin={'50px 0px 00px'}>{`Bem-vindo ao\nPro Beaty!`}</Text>
 			</View>
+			
+			
 			<KeyboardAvoidingView style={styles.containerFields}>
 
 				<View style={styles.containerInputText}>
@@ -53,27 +59,46 @@ export default function loginPage({ navigation }) {
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							<TextInput style={[styles.input, !!errors?.email ? { borderColor: colors.mainA, borderWidth: 2 } : null]}
-								id="email"
-								placeholder="Digite o Email"
-								onChangeText={(t) => onChange(t)}
-								value={value}
-								keyboardType="email-address"
-								returnKeyType={"next"}
-								textContentType={"username"}
-							/>
+							// <TextInput style={[styles.input, !!errors?.email ? { borderColor: colors.mainA, borderWidth: 2 } : null]}
+							// 	id="email"
+							// 	placeholder="Digite o Email"
+							// 	onChangeText={(t) => onChange(t)}
+							// 	value={value}
+							// 	keyboardType="email-address"
+							// 	returnKeyType={"next"}
+							// 	textContentType={"username"}
+							// />
+							<Input style={!!errors?.email ? { borderColor: 'red', borderWidth: 2 } : null}
+							id="email"
+							placeholder="Digite o Email"
+							onChangeText={(t) => onChange(t)}
+							value={value}
+							keyboardType="email-address"
+							returnKeyType={"next"}
+							textContentType={"username"}/>
+
 						)}
 						name="email"
 						defaultValue=""
 					/>
-					{!!errors?.email && <Text style={styles.msgError}>*{errors.email.message}</Text>}
+					{!!errors?.email && <Text small color={'red'}>*{errors.email.message}</Text>}
 				</View>
 				<View style={styles.containerInputText}>
 
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							<TextInput style={[styles.input, !!errors?.password ? { borderColor: colors.mainA, borderWidth: 2 } : null]}
+							// <TextInput style={[styles.input, !!errors?.password ? { borderColor: colors.mainA, borderWidth: 2 } : null]}
+							// 	id="password"
+							// 	placeholder="Digite a Senha"
+							// 	onChangeText={(t) => onChange(t)}
+							// 	value={value}
+							// 	returnKeyType={"send"}
+							// 	secureTextEntry={true}
+							// 	textContentType={"password"}
+							// />
+							// <Input style={[styles.input, !!errors?.password ? { borderColor: colors.mainA, borderWidth: 2 } : null]}
+							<Input style={!!errors?.password ? { borderColor: 'red', borderWidth: 2 } : null}
 								id="password"
 								placeholder="Digite a Senha"
 								onChangeText={(t) => onChange(t)}
@@ -86,21 +111,23 @@ export default function loginPage({ navigation }) {
 						name="password"
 						defaultValue=""
 					/>
-					{!!errors.password && <Text style={styles.msgError}>*{errors.password.message}</Text>}
+					{!!errors.password && <Text small color={'red'}>*{errors.password.message}</Text>}
 
 				</View>
-				<TouchableOpacity style={styles.btnAcessar} onPress={handleSubmit(submitForm)}>
-					<Text style={styles.textAcessar}>Acessar</Text>
-				</TouchableOpacity>
+				
+				{/* <TouchableOpacity style={styles.btnAcessar} onPress={handleSubmit(submitForm)}> */}
+				<ActionButton margin={'20px 0px 20px'} onPress={handleSubmit(submitForm)}>
+					<Text dark large bold>Acessar</Text>
+				</ActionButton>
 
 				<View style={styles.links}>
 					<TouchableOpacity style={styles.btnCadastrar} onPressIn={() => { navigation.navigate('create') }}>
-						<Text style={styles.textCadastrar}>Cadastrar</Text>
+						<Text dark >Cadastrar</Text>
 					</TouchableOpacity>
 				</View>
 
 			</KeyboardAvoidingView>
-		</View>
+		</Container>
 	)
 };
 
@@ -113,7 +140,6 @@ const styles = StyleSheet.create({
 	},
 	containerLogo: {
 		flex: 1,
-		height: '40%',
 		width: '100%',
 		justifyContent: 'center',
 		alignItems: 'center'
@@ -129,7 +155,7 @@ const styles = StyleSheet.create({
 		width: '90%'
 	},
 	containerInputText: {
-		height: '23%',
+		// height: '23%',
 		width: '100%',
 		padding: 5,
 		alignItems: 'flex-end',
@@ -152,7 +178,7 @@ const styles = StyleSheet.create({
 	btnAcessar: {
 		backgroundColor: colors.mainB,
 		width: '96%',
-		height: 45,
+		// height: 45,
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: metrics.borderRadius,
