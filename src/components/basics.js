@@ -71,11 +71,13 @@ export function Text({ ...props }) {
 	)
 }
 
-export const Input = styled.TextInput`
+export const StyledInput = styled.TextInput.attrs(props => ({
+	placeholderTextColor: props.color ?? "#333"  
+  }))`
 	background-color: #FFF;
-	width: 100%;
+	width: ${(props) => props.width ?? `100%`};
 	color: ${(props) => props.color ?? "#333"};
-	font-size: ${(props) => props.fontsize ?? `12px`};
+	font-size: ${(props) => props.fontsize ?? `14px`};
 	font-family: "Montserrat-Regular";
 	border-width: ${(props) => props.borderWidth ?? "1px"};
 	border-color: lightgray;
@@ -84,12 +86,28 @@ export const Input = styled.TextInput`
 	margin: ${(props) => props.margin ?? '0px 0px 5px 0px'};
 	padding: ${(props) => props.padding ?? "10px"};
 	
+	${({ center, right }) => {
+		switch (true) {
+			case center:
+				return `text-align: center`;
+			case right:
+				return `text-align: right`;
+			default:
+				return `text-align: left`;
+		}
+	}}
 `;
+
+export function Input({ ...props }) {
+	return (
+		<StyledInput {...props}>{props.children}</StyledInput>
+	)
+}
 
 export const ActionButton = styled.TouchableOpacity`
 	background-color: ${(props) => props.color ?? "#93b8f0"};;
 	width: ${(props) => props.width ?? `80%`};
-	height: ${(props) => props.height ?? `40px`};
+	/* height: ${(props) => props.height ?? `40px`}; */
 	border-radius: 20px;
 	border-width: ${(props) => props.borderWidth ?? 0};
 	
